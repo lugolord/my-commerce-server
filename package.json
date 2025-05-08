@@ -1,0 +1,17 @@
+{
+  "name": "my-commerce-server",
+  "version": "1.0.0",
+  "description": "api con express para pasarela de pago con stripe",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["api", "stripe", "express", "pasarela de pago"],
+  "author": "Luis Gonzalez",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "stripe": "^18.0.0"
+  }
+}
