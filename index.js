@@ -2,7 +2,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const BASE_URL = 'http://localhost:5173';
+const BASE_URL = 'https://my-commerce-front-psi.vercel.app/';
 
 app.use(express.static('public'));
 
