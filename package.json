@@ -7,12 +7,18 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "keywords": ["api", "stripe", "express", "pasarela de pago"],
+  "keywords": [
+    "api",
+    "stripe",
+    "express",
+    "pasarela de pago"
+  ],
   "author": "Luis Gonzalez",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "mercadopago": "^2.9.0",
     "stripe": "^18.0.0"
   }
 }

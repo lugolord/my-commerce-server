@@ -1,42 +1,46 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const express = require('express');
-const cors = require('cors');
-const app = express();
-const BASE_URL = 'https://my-commerce-front-psi.vercel.app';
+import { MercadoPagoConfig, Preference } from 'mercadopago'
+import express from 'express'
+import cors from 'cors'
 
-app.use(express.static('public'));
+const app = express()
+const client = new MercadoPagoConfig({ accessToken: 'APP_USR-4397332292219056-110309-a7bdb1a59076df67b04566cf854cf70f-2395774619' })
 
-app.use(cors({
-  origin: BASE_URL,
-  credentials: true
-}))
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+app.use(cors())
 
-app.use(express.json());
+const transformReqItems = (items) => {
+  const newItems = items.map(item => ({
+    id: item.id,
+    title: item.title,
+    picture_url: item.thumbnail,
+    quantity: item.quantity,
+    unit_price: item.price
+  }))
 
-app.post('/create-checkout-session', async (req, res) => {
-  const { cart } = req.body;
+  return newItems
+}
 
-  const lineItems = cart.map(product => ({
-    price_data: {
-      currency: 'usd',
-      product_data: {
-        name: product.title,
-        images: [product.thumbnail]
-      },
-      unit_amount: Math.round(product.price * 100),
-    },
-    quantity: product.quantity,
-  }));
+app.post('/create-preference', (req, res) => {
+  const preference = new Preference(client)
+  const items = transformReqItems(req.body.items)
 
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
-    line_items: lineItems,
-    mode: 'payment',
-    success_url: `${BASE_URL}/success/{CHECKOUT_SESSION_ID}`,
-    cancel_url: `${BASE_URL}/cart`,
-  });
+  preference.create({
+    body: {
+      items: items
+    }
+  })
+  .then(data => {
+    res.status(200).json({
+      preference_id: data.id,
+      preference_url: data.init_point
+    })
+  })
+  .catch((err) => {
+    console.log(err)
+    res.status(500).json({ error: 'error creando la preferencia' })
+  })
+})
 
-  res.json({ url: session.url });
-});
 
-app.listen(4242, () => console.log('Running on port 4242'));
+app.listen(4242, () => console.log('Running on port 4242'))
