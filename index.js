@@ -27,7 +27,10 @@ app.post('/create-preference', (req, res) => {
 
   preference.create({
     body: {
-      items: items
+      items: items,
+      back_urls: {
+        success: 'https://my-commerce-front-psi.vercel.app/success'
+      }
     }
   })
   .then(data => {
