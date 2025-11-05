@@ -3,7 +3,7 @@ import express from 'express'
 import cors from 'cors'
 
 const app = express()
-const client = new MercadoPagoConfig({ accessToken: 'APP_USR-4397332292219056-110309-a7bdb1a59076df67b04566cf854cf70f-2395774619' })
+const client = new MercadoPagoConfig({ accessToken: process.env.ACCESS_TOKEN })
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
