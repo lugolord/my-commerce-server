@@ -47,6 +47,8 @@ app.post('/create-preference', (req, res) => {
 
 app.post('/prueba', (req, res) => {
   console.log('entro a este endpoint')
+
+  res.json({ ok: 'todo ok' })
 })
 
 
