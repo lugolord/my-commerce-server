@@ -1,9 +1,10 @@
-import { MercadoPagoConfig, Preference } from 'mercadopago'
+import { MercadoPagoConfig, Preference, Payment } from 'mercadopago'
 import express from 'express'
 import cors from 'cors'
 
 const app = express()
 const client = new MercadoPagoConfig({ accessToken: process.env.ACCESS_TOKEN })
+const payment = new Payment(client)
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
@@ -45,10 +46,12 @@ app.post('/create-preference', (req, res) => {
   })
 })
 
-app.post('/prueba', (req, res) => {
-  console.log('entro a este endpoint')
+app.post('/check-id', (req, res) => {
+  const paymentId = req.body.payment_id
 
-  res.json({ ok: 'todo ok' })
+  payment.get({ id: paymentId })
+    .then(() => res.json({ ok: true }))
+    .catch((err) => res.json({ ok: false, error: err.error}))
 })
 
 
