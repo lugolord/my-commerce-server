@@ -1,8 +1,8 @@
-# 🛒 Stripe Payment Backend
+# 🛒 Mercado Pago Checkout Backend
 
   
 
-Este es un backend sencillo en **Node.js** que permite crear sesiones de pago utilizando la API de [Stripe](https://stripe.com).
+Este es un backend sencillo en **Node.js** que permite crear sesiones de pago utilizando la API de [Mercado Pago](https://www.mercadopago.com.ar/developers/es).
 
 Ideal como backend para aplicaciones e-commerce o demos que necesiten integrarse con pagos online.
 
@@ -16,7 +16,7 @@ Ideal como backend para aplicaciones e-commerce o demos que necesiten integrarse
 
 - [**CORS**](https://expressjs.com/en/resources/middleware/cors.html) — Middleware para habilitar peticiones cross-origin.
 
-- [**Stripe**](https://stripe.com/docs/api) — Plataforma de pagos moderna para internet.
+- [**Mercado Pago**](https://www.mercadopago.com.ar/developers/es/docs/checkout-pro/overview) — Plataforma de pagos moderna para internet.
 
   
 
@@ -57,51 +57,24 @@ node index.js
 
   
 
-### `POST /create-checkout-session`
+### `POST /create-preference`
 
-Crea una nueva sesión de pago en Stripe.
-
-  
-
-#### Body esperado:
-
-```json
-
-{
-
-"items": [
-
-{ "id": "product_1", "quantity": 1 },
-
-{ "id": "product_2", "quantity": 2 }
-
-]
-
-}
-
-```
-
-  
-
-#### Respuesta:
-
-```json
-
-{
-
-"url": "https://checkout.stripe.com/pay/cs_test_..."
-
-}
-
-```
+Crea una nueva preferencia de pago en mercado pago.
 
   
 
 ## 📝 Notas
 
-- Debes configurar tus productos y precios en [Stripe Dashboard](https://dashboard.stripe.com/test/products) antes de crear sesiones.
+- No usar cuentas de mercado pago reales para probar la app. En su lugar usa los siguientes datos de prueba al momento de la compra:
 
-- Este backend está pensado para fines **educativos** o para **proyectos personales**. No para **produccion**.
+  - Numero de tarjeta: 5031 7557 3453 0604
+  - Nombre: APRO
+  - Fecha de vencimiento de la tarjeta: 11/30
+  - Clave de la tarjeta: 123
+  - DNI: 12345678
+  - Mail: TESTUSER151495173@testuser.com
+
+- Este backend está pensado para **proyectos personales**. No para **produccion**.
 ---
 ## 🖥️ Desarrollado por
 **Luis Gonzalez**
