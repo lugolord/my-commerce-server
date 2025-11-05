@@ -45,5 +45,9 @@ app.post('/create-preference', (req, res) => {
   })
 })
 
+app.post('/prueba', (req, res) => {
+  console.log('entro a este endpoint')
+})
+
 
 app.listen(4242, () => console.log('Running on port 4242'))
