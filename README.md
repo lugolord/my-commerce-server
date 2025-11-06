@@ -27,11 +27,9 @@ Ideal como backend para aplicaciones e-commerce o demos que necesiten integrarse
 1. Clona este repositorio:
 
 ```bash
-
 git clone https://github.com/lugolord/my-commerce-server.git
 
 cd my-commerce-server
-
 ```
 
   
@@ -39,16 +37,11 @@ cd my-commerce-server
 2. Instala las dependencias:
 
 ```bash
-
 npm install
-
 ```
 4. Inicia el servidor:
-
 ```bash
-
 node index.js
-
 ```
 
   
@@ -61,14 +54,24 @@ node index.js
 
 Crea una nueva preferencia de pago en mercado pago.
 
-  
+### `POST /check-id`
+
+Verifica que el id del pago sea real utilizando la api de mercado pago. Ejemplo de respuesta:
+
+```javascript
+{ ok: true } /// en caso de que el id sea real
+
+{ ok: false, error: err.error } /// en caso de que el id sea falso
+```
 
 ## 📝 Notas
 
 - No usar cuentas de mercado pago reales para probar la app. En su lugar usa los siguientes datos de prueba al momento de la compra:
 
   - Numero de tarjeta: 5031 7557 3453 0604
-  - Nombre: APRO
+  - Nombre: 
+    - APRO - si quieres que la operacion sea exitosa
+    - OTHE - si quieres que la operacion falle
   - Fecha de vencimiento de la tarjeta: 11/30
   - Clave de la tarjeta: 123
   - DNI: 12345678
