@@ -30,7 +30,8 @@ app.post('/create-preference', (req, res) => {
     body: {
       items: items,
       back_urls: {
-        success: 'https://my-commerce-front-psi.vercel.app/success'
+        success: 'https://my-commerce-front-psi.vercel.app/success',
+        failure: 'https://my-commerce-front-psi.vercel.app/fail'
       }
     }
   })
